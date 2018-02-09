@@ -1,0 +1,53 @@
+﻿@model DemoWithUsers.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="jumbotron">
+    <h1>@Html.DisplayFor(model => model.Name)</h1>
+    <p class="lead"> @Html.DisplayFor(model => model.Desc)</p>
+</div>
+<div>
+    <h4>Information</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            <center>
+                @*col 3 så vi kan ha 4 bilder i samma rad, max 12 cols ju :D*@
+                <div class="col-md-3">
+                    <img src="@Url.Content("https://lh3.googleusercontent.com/K4x1RjVE_PIPI7IV2PJj9bnYOmQeJGZvMP80czUw0clMGhVrYavHvaIr2Tf3MUf0L90=h310")" alt="@Model.Desc" />
+                </div>
+                <div class="col-md-3">
+                    <img src="@Url.Content("https://lh3.googleusercontent.com/K4x1RjVE_PIPI7IV2PJj9bnYOmQeJGZvMP80czUw0clMGhVrYavHvaIr2Tf3MUf0L90=h310")" alt="@Model.Desc" />
+                </div>
+                <div class="col-md-3">
+                    <img src="@Url.Content("https://lh3.googleusercontent.com/K4x1RjVE_PIPI7IV2PJj9bnYOmQeJGZvMP80czUw0clMGhVrYavHvaIr2Tf3MUf0L90=h310")" alt="@Model.Desc" />
+                </div>
+                <div class="col-md-3">
+                    <img src="@Url.Content("https://lh3.googleusercontent.com/K4x1RjVE_PIPI7IV2PJj9bnYOmQeJGZvMP80czUw0clMGhVrYavHvaIr2Tf3MUf0L90=h310")" alt="@Model.Desc" />
+                </div>
+            </center>
+        </dd>
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Index", "Apps")" class="btn btn-default">
+        Tillbaka
+    </a>
+    @if (Request.IsAuthenticated)
+    {
+        <a href="@Url.Action("AddToBasket", "Apps", new { id = Model.Id })" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            @Model.Price kr
+        </a>
+        <a href="@Url.Action("AddToBasket", "Wishes", new { id = Model.Id })" class="btn btn-warning">
+            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            Önska
+        </a>
+    }
+
+    @*skitsnyggt sätt att alerta från controllers
+        källa, https://stackoverflow.com/questions/22657335/how-to-show-alert-message-in-mvc-4-controller*@
+    @Html.Raw(TempData["msg"])
+</p>

@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNet.Identity
+
+
+@if (Request.IsAuthenticated)
+{
+
+
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mitt konto(@User.Identity.Name) <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Mina köp", "Index", "OrderDetails")</li>
+                    <li>@Html.ActionLink("Inställningar", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+                </ul>
+            </li>
+
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Logga ut</a></li>
+            <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Bli medlem", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Logga in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

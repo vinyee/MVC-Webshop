@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DemoWithUsers.Models.Product>
+
+@{
+
+    ViewBag.Title = "Index";
+}
+
+<br /><br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Desc)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <img src="@Url.Content(item.ImageUrl)" alt="@item.Name" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desc)
+            </td>
+            <td>
+                <a href="@Url.Action("Details", "Wishes", new { id = item.Id })" class="btn btn-warning">Mer information</a>
+                <a href="@Url.Action("Delete", "Wishes", new { id = item.Id })" class="btn btn-danger">Ta bort</a>
+            </td>
+        </tr>
+    }
+
+</table>

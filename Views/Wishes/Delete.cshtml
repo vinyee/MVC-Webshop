@@ -1,0 +1,22 @@
+﻿@model DemoWithUsers.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Är du säker på att du vill ta bort @Html.DisplayFor(model => model.Name) från din önskelista?</h3>
+<div>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <a href="@Url.Action("Index", "Wishes")" class="btn btn-default">
+                Tillbaka
+            </a>
+            <input type="submit" value="Ta bort" class="btn btn-danger" />
+        </div>
+    }
+</div>

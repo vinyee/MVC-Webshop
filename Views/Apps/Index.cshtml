@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DemoWithUsers.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h1>App Store</h1>
+    <p class="lead">Välkommen till den nya App Store, its phenomenal, so wow, much swag :O</p>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <center>
+            <div class="col-md-4">
+                <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
+                <img src="@Url.Content(item.ImageUrl)" alt="@item.Name" />
+                <br /><br />
+                <p>@Html.DisplayFor(modelItem => item.Desc)</p>
+                <br /><br />
+
+                <a href="@Url.Action("Details", "Apps", new { id = item.Id })" class="btn btn-info">
+                    Läs mer
+                </a>
+                @if (Request.IsAuthenticated)
+                {
+                    <a href="@Url.Action("AddToBasket", "Apps", new { id = item.Id })" onclick="editProduct(id)" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                        @Html.DisplayFor(modelItem => item.Price) kr
+                    </a>
+                }
+
+            </div>
+        </center>
+    }
+    @Html.Raw(TempData["msg"])
+</div>

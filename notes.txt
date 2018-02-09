@@ -1,0 +1,22 @@
+Vi beställer 3 appar
+
+OrderItems
+OrderId = 1
+AppId = 1
+
+OrderId = 1
+AppId = 2
+
+OrderId = 1
+AppId = 2
+
+
+Orders
+OrderId = 1
+OrderDate = datum;
+UserIdentity = ”test@gmail.com”
+OrderDetails = 1
+
+OrderDetails
+Firstname
+Lastname

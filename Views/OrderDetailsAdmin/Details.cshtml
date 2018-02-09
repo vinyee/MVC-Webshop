@@ -1,0 +1,95 @@
+﻿@model DemoWithUsers.Models.OrderDetailViewModels
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Orderinfo</h2>
+
+<div>
+    <h4>Uppgifter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderId)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dd>
+            @foreach (var item in Model.Apps)
+            {
+                <center>
+                    <div class="col-md-4">
+                        <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
+                        <p>@Html.DisplayFor(modelItem => item.Desc)</p>
+                        <img src="@Url.Content(item.ImageUrl)" alt="@item.Name" />
+                        <br /><br /><b>@Html.DisplayFor(modelItem => item.Price) kr</b><br /><br />
+                    </div>
+                </center>
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Index", "OrderDetailsAdmin")" class="btn btn-default">Tillbaka</a>
+    <a href="@Url.Action("Edit", "OrderDetailsAdmin", new { id = Model.Id })" class="btn btn-warning">Redigera</a>
+</p>
